@@ -15,15 +15,19 @@ function getInfo(evt) {
 
 document.addEventListener(`DOMContentLoaded`, backInfo);
 function backInfo(evt) {
-        form.elements.email.value = JSON.parse(localStorage.getItem(LOCAL_KEY)).email;
-    form.elements.message.value = JSON.parse(localStorage.getItem(LOCAL_KEY)).message;
+    const savedInfo = JSON.parse(localStorage.getItem(LOCAL_KEY));
+    if (savedInfo) {
+        form.elements.email.value = savedInfo.email;
+    form.elements.message.value = savedInfo.message;
+    }
+        
 
 }
 
 subBtn.addEventListener(`click`, sendInfo);
 function sendInfo(evt) {
     evt.preventDefault();
-    console.log(localStorage.getItem(LOCAL_KEY))
+    console.log(JSON.parse(localStorage.getItem(LOCAL_KEY)))
     form.reset()
     localStorage.removeItem(LOCAL_KEY)
 }
